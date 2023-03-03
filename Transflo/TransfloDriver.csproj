@@ -18,11 +18,16 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.27.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TransfloManager\TransfloManager.csproj" />
-    <ProjectReference Include="..\TransfloRepository\TransfloRepository.csproj" />
+    <Reference Include="TransfloManager">
+      <HintPath>..\TransfloManager\bin\Debug\net7.0\TransfloManager.dll</HintPath>
+    </Reference>
+    <Reference Include="TransfloRepository">
+      <HintPath>..\TransfloManager\bin\Debug\net7.0\TransfloRepository.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
