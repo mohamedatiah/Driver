@@ -44,7 +44,6 @@ namespace Transflo_Task.Controllers
         {
             try
             {
-
                 var res = _httpContext?.HttpContext?.User.Claims.Single(x => x.Type == "username").Value;
                 var drivers=await _driverService.GetAll(res??"");
                 _response.Result = drivers;
