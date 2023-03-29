@@ -28,16 +28,14 @@ namespace TransfloDriver.Repository
             var tokenHandler = new JwtSecurityTokenHandler();
             var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authentication"));
 
-            var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("KEY"));
+          
 
             var creds = new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256Signature);
 
             var tockenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),//.AddSeconds(30) .AddDays(1), 
-                // Expires = DateTime.Now.AddSeconds(15),//.AddSeconds(30) .AddDays(1), 
+                Expires = DateTime.Now.AddDays(1),
                 SigningCredentials = creds
             };
 

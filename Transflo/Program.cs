@@ -21,8 +21,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(option => {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection")).
-    UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking); ;
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultSQLConnection"));
+   
 });
 
 
@@ -30,7 +30,6 @@ builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-// Add services to the contain
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -55,12 +54,10 @@ builder.Services.AddScoped<IDriverService, DriverService>();
 builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 
 
-//builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 var app = builder.Build();
-app.UseCors(x => x.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader()
+app.UseCors(x => x.WithOrigins("*").AllowAnyMethod().AllowAnyHeader()
       .SetIsOriginAllowed((host) => true)
       .AllowCredentials());
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 
 
@@ -74,7 +71,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseAuthentication(); // This need to be added	
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();
